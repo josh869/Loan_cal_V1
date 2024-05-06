@@ -1,7 +1,7 @@
+
 from data_dict import master_dict
 
 class Loan_cal:
-
     global master_dict
 
     interest = 0.0375
@@ -17,7 +17,6 @@ class Loan_cal:
         self.specific_loan_amt = specific_loan_amt
 
     def confirm_inputs(self):
-
         dell = []
         new_cont = []
         input_list = [self.netpay, self.repayment, self.accrude_interest, self.balance,
@@ -56,10 +55,10 @@ class Loan_cal:
         print('')
 
     def interest_confirmation(self):
-        if self.state in ['state2', 'state3', 'state5', 'state1', 'state4', 'state7', 'state8', 'state6']:
-            Loan_cal.interest = 0.0375
+        if self.state in ['country1', 'country2', 'country3', 'country4', 'country5']:
+            Loan_cal.interest = 0.0475
         else:
-            Loan_cal.interest = 0.035
+            Loan_cal.interest = 0.075
 
         print('interest confirmed ')
 
@@ -91,10 +90,10 @@ class Loan_cal:
         lt_cont = []
         output_values = []
 
-        for val in Loan_cal.master_dict:
+        for val in master_dict:
             if self.state == val:
                 print('valid state entered')
-                new_dict = Loan_cal.master_dict[self.state]
+                new_dict = master_dict[self.state]
 
                 for values in new_dict:
                     if specific_deduction == 0 and specific_loan_amt == 0:
@@ -110,7 +109,7 @@ class Loan_cal:
 
                     lt_cont.append(values)
                     output_values.append(
-                        f"Loan_amount: {round(eligible_loan_amt, -3) - 1000}  Loan_tenure: {values} months   Repayment: {monthly_deduct}   Admin Fee:{admin_fee}  Total balance: {round(loan_amt, -3)}"
+                        f"Eligible_loan_amount: {round(eligible_loan_amt, -3) - 1000}  Loan_tenure: {values} months   Repayment: {monthly_deduct}   Management_fee:{admin_fee}  Total balance: {round(loan_amt, -3)}"
                     )
                 break
 
@@ -120,47 +119,39 @@ class Loan_cal:
 
     def return_values(self):
         self.confirm_inputs()
-        # self.interest_confirmation()
+        self.interest_confirmation()
         self.netpay_loan_cal(self.specific_deduction, self.specific_loan_amt)
 
-
-def run_loan_cal(prompt_one):
+def run_loan_cal():
     counterx = 0
     while counterx < 1:
-        valid_inputs = ['state1', 'state3', 'state5', 'state2', 'state4', 'state7', 'state8', 'state6']
-        state_in = input(
-            'select state - state1, state2, state3, state5, state4,state7, state8, state6 ')
-        if state_in in valid_inputs:
+        prompt_one = input('Select loan type: N-Salary based,  L-Specific loan amount, D-I want a particular deduction ')
+        if prompt_one.lower() in ['n', 'd', 'l']:
+            exit_loop = False
+            while not exit_loop:
+                valid_inputs = ['country1', 'country2', 'country3', 'country4', 'country5', 'country6', 'country7', 'country8']
+                state_in = input('select country - country1, country2, country3, country4, country5, country6, country7, country8 ')
 
-            if prompt_one == 'N':
-                netpay_in = input('Net salary: ')
-                monthly_repayment_in = input('Existing repayment: Enter 0 if you there is no active loan  ')
-                accrude_interest_in = input('Existing interest: Enter 0 if you there is no active loan  ')
-                principal_balance_in = input('Existing loan balance: Enter 0 if you there is no active loan  ')
-                specific_deduction_in, specific_loan_amt_in = ['0', '0']
+                if state_in.lower() in valid_inputs:
+                    if prompt_one == 'n':
+                        netpay_in = input('Net salary: ')
+                        monthly_repayment_in = input('Existing repayment: Enter 0 if you there is no active loan  ')
+                        accrude_interest_in = input('Existing interest: Enter 0 if you there is no active loan  ')
+                        principal_balance_in = input('Existing loan balance: Enter 0 if you there is no active loan  ')
+                        specific_deduction_in, specific_loan_amt_in = ['0', '0']
 
-            elif prompt_one == 'D':
-                netpay_in, monthly_repayment_in, accrude_interest_in, principal_balance_in, specific_loan_amt_in = ['0',
-                                                                                                                    '0',
-                                                                                                                    '0',
-                                                                                                                    '0',
-                                                                                                                    '0']
-                specific_deduction_in = input('Enter chosen repayment amount: ')
-
-            elif prompt_one == 'L':
-                netpay_in, monthly_repayment_in, accrude_interest_in, principal_balance_in, specific_deduction_in = ['0',
-                                                                                                                     '0',
-                                                                                                                     '0',
-                                                                                                                     '0',
-                                                                                                                     '0']
-                specific_loan_amt_in = input('Enter loan amount: ')
-
-            d2 = Loan_cal(state_in, netpay_in, monthly_repayment_in, accrude_interest_in, principal_balance_in,
-                          specific_deduction_in, specific_loan_amt_in)
-            d2.return_values()
-        else:
-            print("select a valid option from the list below")
-
+                    elif prompt_one == 'd':
+                        netpay_in, monthly_repayment_in, accrude_interest_in, principal_balance_in, specific_loan_amt_in = ['0','0','0','0','0']
+                        specific_deduction_in = input('Enter chosen repayment amount: ')
+                    elif prompt_one == 'l':
+                        netpay_in, monthly_repayment_in, accrude_interest_in, principal_balance_in, specific_deduction_in = ['0','0','0','0','0']
+                        specific_loan_amt_in = input('Enter loan amount: ')
+                    d2 = Loan_cal(state_in, netpay_in, monthly_repayment_in, accrude_interest_in, principal_balance_in,
+                                  specific_deduction_in, specific_loan_amt_in)
+                    d2.return_values()
+                    exit_loop = True
+                else:
+                    print("select a valid option from the list below")
 
 def main_app():
     counter = 0
@@ -178,31 +169,20 @@ def main_app():
         elif first_time_used.lower() == "no":
             counter1 = 0
             while counter1 < 1:
-                prompt_zero = input("Select loan category; A-salary loan  c-car loan ")
-                if prompt_zero == "a":
-                    counter2 = 0
-                    while counter2 < 1:
-                        prompt_one = input(
-                            'Select loan type: N-Salary based,  L-Specific loan amount, D-I want a particular deduction ')
-                        if prompt_one.lower() in ['n', 'd', 'l ']:
-                            run_loan_cal(prompt_one)
-
-                        else:
-                            print('Invalid option selected. Select a valid option from the list below: ')
-                            print("n   d   l")
-
-
+                prompt_zero = input("Select loan category; A-salary loan  C-car loan ")
+                if prompt_zero.lower() == "a":
+                    run_loan_cal()
                 elif prompt_zero.lower() == "c":
                         print("")
                         print(
                             "Thank you for reaching out. We'll notify you as soon as our car loan services is fully available")
                         print("")
                         print("Do you wish to apply for a salary loan instead, simply select option A below to proceed")
-
                 else:
-                    print("select a valid option A OR B ")
+                    print("select a valid option A OR C ")
         else:
             print("Invalid inputs entered")
             """use a function that will take user back to select a valid optionNo"""
 
-main_app()
+if __name__ == "__main__":
+    main_app()
