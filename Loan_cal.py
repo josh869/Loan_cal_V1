@@ -18,8 +18,7 @@ class Loan_cal:
         input_list = [self.netpay, self.repayment, self.accrude_interest, self.balance,
                       self.specific_deduction, self.specific_loan_amt]
         print(
-            f'netpay:{self.netpay}   Repayment:{self.repayment}   Acc_interest:{self.accrude_interest}  Pri_balance:\
-{self.balance}   Specific_deduction:{self.specific_deduction}   Specific_loan_amt:{self.specific_loan_amt}')
+            f'netpay:{self.netpay}   Repayment:{self.repayment}   Acc_interest:{self.accrude_interest}  Pri_balance:{self.balance}   Specific_deduction:{self.specific_deduction}   Specific_loan_amt:{self.specific_loan_amt}')
         print('')
 
     def interest_confirmation(self):
