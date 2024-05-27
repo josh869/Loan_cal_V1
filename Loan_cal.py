@@ -18,7 +18,8 @@ class Loan_cal:
         input_list = [self.netpay, self.repayment, self.accrude_interest, self.balance,
                       self.specific_deduction, self.specific_loan_amt]
         print(
-            f'netpay:{self.netpay}   Repayment:{self.repayment}   Acc_interest:{self.accrude_interest}  Pri_balance:{self.balance}   Specific_deduction:{self.specific_deduction}   Specific_loan_amt:{self.specific_loan_amt}')
+            f'netpay:{self.netpay}   Repayment:{self.repayment}   Acc_interest:{self.accrude_interest}  Pri_balance:\
+{self.balance}   Specific_deduction:{self.specific_deduction}   Specific_loan_amt:{self.specific_loan_amt}')
         print('')
 
     def interest_confirmation(self):
@@ -139,9 +140,6 @@ def main_app():
                               specific_deduction_in]
 
                 print('')
-                print('I have successfully exited the crazy loop. Oh yeah!!!!')
-
-                print('')
                 print(
                     f" {netpay_in} {monthly_repayment_in} {accrude_interest_in} {principal_balance_in} {specific_deduction_in}")
                 print('')
@@ -161,11 +159,11 @@ def main_app():
 
     counter = 0
     while counter < 1:
-        first_time_used = input("Do you have an account with JtestB. Select Yes or No  ")
+        first_time_used = input("kindly confirm whether you currently hold an account with JtestB by selecting either Yes or No?  ")
         if first_time_used.lower() == "yes":
-            First_name = input("Enter your first name  ")
-            Last_name = input("Enter your last name  ")
-            Email = input("What's your email  ")
+            First_name = input("Please provide your first name:  ")
+            Last_name = input("Please provide your last name:  ")
+            Email = input("Enter your email  ")
             Mobile = input("Enter your mobile  ")
             City = input("Enter your city  ")
             print(
@@ -181,11 +179,11 @@ def main_app():
                 elif prompt_zero.lower() == "c":
                     print("")
                     print(
-                        "Thank you for reaching out. We'll notify you as soon as our car loan services is fully available")
+                        "Thank you for contacting us. We will promptly inform you once our car loan services are fully available.")
                     print("")
-                    print("Do you wish to apply for a salary loan instead, simply select option A below to proceed")
+                    print("If you would like to apply for a salary loan instead, please proceed by selecting option A below.")
                 else:
-                    print("select a valid option A OR C ")
+                    print("select a valid option A or C ")
         else:
             print("Invalid inputs entered")
 
