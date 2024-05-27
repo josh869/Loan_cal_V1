@@ -4,13 +4,13 @@ class Loan_cal:
     low_interest = 0.0475
     high_interest = 0.075
 
-    def __init__(self, state, net_pay, repayment, balance, accrude_interest, specific_deduction,
+    def __init__(self, country, net_pay, repayment, balance, accumulated_interest, specific_deduction,
                  specific_loan_amt):
-        self.state = state
+        self.state = country
         self.netpay = net_pay
         self.repayment = repayment
         self.balance = balance
-        self.accrude_interest = accrude_interest
+        self.accrude_interest = accumulated_interest
         self.specific_deduction = specific_deduction
         self.specific_loan_amt = specific_loan_amt
 
